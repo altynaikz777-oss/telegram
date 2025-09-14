@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telegram</title>
+    <style>
+      body {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background-color: rgb(244, 244, 244);
+        width: 600px;
+        min-height: 800px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 30px 10px 30px;
+        border-bottom: 1px solid grey;
+      }
+      .stories {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .tonti {
+        cursor: pointer;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        box-shadow: 0 0 0 4px cyan;
+        animation: blue-border-spin 2s linear infinite;
+      }
+      @keyframes blue-border-spin {
+        0% {
+          box-shadow: 0 0 0 4px cyan;
+          transform: rotate(0deg);
+        }
+        100% {
+          box-shadow: 0 0 0 4px cyan;
+          transform: rotate(360deg);
+        }
+      }
+      .plus {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .plus1 {
+        width: 30px;
+        height: 30px;
+      }
+      .note {
+        width: 30px;
+        height: 30px;
+      }
+      .search-bar {
+        padding: 20px 30px 10px 30px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+      }
+      .search-bar input {
+        width: 100%;
+        max-width: 500px;
+        padding: 10px 40px 10px 40px;
+        border: none;
+        border-radius: 10px;
+        background-color: #e0e0e0;
+        text-align: center;
+        font-size: 18px;
+      }
+      .search-bar input:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+      .search-icon {
+        position: absolute;
+        left: 45px;
+        width: 24px;
+        height: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+      }
+      .folders {
+        display: flex;
+        gap: 30px;
+        padding: 10px 30px;
+        font-size: 20px;
+        font-family: sans-serif;
+        justify-content: flex-start;
+        margin-top: 10px;
+        width: 100%;
+        border-bottom: 1px solid grey;
+      }
+      .main {
+        color: rgba(25, 70, 219, 0.928);
+        border-bottom: 2px solid rgba(25, 70, 219, 0.928);
+        padding-bottom: 5px;
+        border-radius: 5px;
+      }
+      .grey {
+        color: grey;
+      }
+      .heart {
+        width: 20px;
+        height: 16px;
+        margin-left: 5px;
+      }
+      .chats {
+        margin-top: 20px;
+        padding: 0 30px;
+      }
+      .chat1,
+      .chat2,
+      .chat3,
+      .chat4,
+      .chat5 {
+        border-bottom: 0.5px solid grey;
+        width: 100%;
+        min-width: 0;
+        height: 80px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 0;
+      }
+      .archive,
+      .monkeys,
+      .gaziz,
+      .english,
+      .aktorgyn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+      }
+      .monkeys {
+        border-radius: 10px;
+      }
+      .text1,
+      .text2,
+      .text3,
+      .text4,
+      .text5 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 10px;
+        flex: 1;
+      }
+      .top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+      }
+      .bottom {
+        display: flex;
+        align-items: center;
+        color: grey;
+        font-size: 14px;
+        width: 100%;
+      }
+      .time {
+        margin-left: auto;
+        color: grey;
+        font-size: 13px;
+      }
+      .unread {
+        background-color: rgba(25, 70, 219, 0.928);
+        border-radius: 20px;
+        width: 30px;
+        height: 20px;
+        padding: 5px;
+        color: white;
+        text-align: center;
+        font-size: 13px;
+        margin-left: 10px;
+      }
+      .final {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        display: flex;
+        border-top: 1px solid grey;
+        background-color: rgba(241, 241, 241, 255);
+        align-items: center;
+        justify-content: space-around;
+        z-index: 10;
+      }
+      .final1,
+      .final2,
+      .final3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 33.33%;
+        height: 100%;
+      }
+      .contacts {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 5px;
+      }
+      .calls,
+      .settings {
+        width: 40px;
+        height: 40px;
+      }
+      .word {
+        font-family: sans-serif;
+        font-size: 12px;
+        color: gray;
+        margin-top: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h4 class="edit">Edit</h4>
+        <div class="stories">
+          <img src="images/stories — копия.jpg" alt="Stories" class="tonti" />
+          <h3>Chats</h3>
+        </div>
+        <div class="plus">
+          <img src="images/plus.jpg" alt="Plus" class="plus1" />
+          <img src="images/note.jpg" alt="note" class="note" />
+        </div>
+      </div>
+      <div class="search-bar">
+        <img
+          src="images/search-icon-2-614x460.png"
+          alt="Search"
+          class="search-icon"
+        />
+        <input type="text" placeholder="Search" class="input" />
+      </div>
+      <div class="folders">
+        <div class="main">All Chats</div>
+        <div class="grey">English</div>
+        <div class="grey">
+          JIHC <img src="images/heart.png" class="heart" />
+        </div>
+      </div>
+      <div class="chats">
+        <div class="chat1">
+          <img src="images/archive — копия.PNG" alt="chat1" class="archive" />
+          <div class="text1">
+            <div class="top">
+              <h3>Archived Chats</h3>
+            </div>
+            <div class="bottom">
+              <span> ENGLISH MIND, </span>
+              <div class="alto">
+                <span>Altynai</span>
+                <img src="images/heart.png" class="heart" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chat2">
+          <img src="images/1f1.monkeys — копия.jpg" class="monkeys" />
+          <div class="text2">
+            <div class="top">
+              <h3>1F1-Monkeys</h3>
+              <span class="time">18:30</span>
+            </div>
+            <div class="bottom">
+              <span>Teacher: Where are you?</span>
+            </div>
+          </div>
+        </div>
+        <div class="chat3">
+          <img src="images/gaziz.eng — копия.jpg" class="gaziz" />
+          <div class="text3">
+            <div class="top">
+              <h3>Gaziz.Eng</h3>
+              <span class="time">12:00</span>
+              <span class="unread">34</span>
+            </div>
+            <div class="bottom">
+              <span>
+                IELTS 8.0 Бір досыма 1 жарым айдай көмек беріп, сабақ өтіп
+                жүрдік...
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="chat4">
+          <img src="images/easy.english — копия.jpg" class="english" />
+          <div class="text4">
+            <div class="top">
+              <h3>Easy English</h3>
+              <span class="time">09:00</span>
+            </div>
+            <div class="bottom">
+              <span>
+                Hello! Dear students! I am glad to welcome you to my new
+                channel...
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="chat5">
+          <img src="images/stories — копия.jpg" class="aktorgyn" />
+          <div class="text5">
+            <div class="top">
+              <h3>Aktorgyn</h3>
+              <span class="time">Yesterday</span>
+            </div>
+            <div class="bottom">
+              <span>You: aaa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="final">
+        <div class="final1">
+          <img src="images/contacts-63.png" alt="Contacts" class="contacts" />
+          <h4 class="word">Contacts</h4>
+        </div>
+        <div class="final2">
+          <img src="images/IMG_7319.jpg" alt="Calls" class="calls" />
+        </div>
+        <div class="final3">
+          <img src="images/IMG_7320.jpg" alt="Settings" class="settings" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
